@@ -1,0 +1,32 @@
+- hosts: all
+  become: yes
+  become_user: root
+  vars:
+   ServiceName: ansible-devops
+   Event: Elasticsearch_Demo
+   Incident: Direct Push
+   hostip: 192.168.
+
+  tasks:
+    - name: timestamp
+      action: shell date +"%Y-%m-%d %H:%M:%S%z"
+      register: time
+    - set_fact:
+          ingesttime: "{{time.stdout}}"
+    - name: Initiate User List
+      set_fact:
+        Service_Management: []
+    - name: Add new JSON Objects to List
+      set_fact:
+        Service_Management: "{{ Service_Management +
+                       [{ 'ServiceName':'{{ServiceName}}',
+                          'Incident':'{{Incident}}',
+                          'hostip': '{{hostip}}' }] }}"
+    - name: Debug
+      debug:
+        var: Service_Management
+      register: service_management
+
+    - name: debug
+      debug:
+         var: ingesttime
