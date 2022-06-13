@@ -5,7 +5,7 @@
    ServiceName: ansible-devops
    Event: Elasticsearch_Demo
    Incident: Direct Push
-   hostip: 192.168.
+   hostip: 192.168.10.34
 
   tasks:
     - name: timestamp
